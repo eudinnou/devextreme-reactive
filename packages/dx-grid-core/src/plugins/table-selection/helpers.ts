@@ -14,6 +14,9 @@ export const isSelectAllTableCell: IsSpecificCellFn = (
 export const isRowHighlighted: PureComputed<[boolean, any[], TableRow, any[]?], boolean> = (
   highlightRow, selection, tableRow, focused,
 ) => {
+  if (!highlightRow) {
+    return false;
+  }
   const highlightion = selection ? selection.concat(focused || []) : focused;
-  return !!(highlightRow && highlightion && highlightion.includes(tableRow.rowId));
+  return !!(highlightion && highlightion.includes(tableRow.rowId));
 };
